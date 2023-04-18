@@ -29,9 +29,6 @@ public class Doctor implements Serializable {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "BOX_OFFICE")
-    private Double boxOffice = 50.5;
-
     @ManyToOne
     @JoinColumn(name="DEPARTMENT_ID")
     private Department department;
