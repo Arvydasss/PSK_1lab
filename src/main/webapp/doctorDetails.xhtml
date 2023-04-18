@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Gydytojas #{updateDoctorDetails.doctor.name} #{updateDoctorDetails.doctor.surname}</h2>
+    <h:form>
+        <h:outputText value="Pacientai: "/>
+        <ol>
+            <ui:repeat value="#{updateDoctorDetails.doctor.patients}" var="patient">
+                <li>#{patient.name} #{patient.surname}</li>
+            </ui:repeat>
+        </ol>
+        <div>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Paciento vardas:" for="patientName" />
+                <h:inputText id="patientName" a:placeholder="Iveskite paciento varda" value="#{updateDoctorDetails.patient.name}" required="false" />
+            </h:panelGrid>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Paciento pavarde:" for="patientSurname" />
+                <h:inputText id="patientSurname" a:placeholder="Iveskite paciento pavarde" value="#{updateDoctorDetails.patient.surname}" required="false" />
+            </h:panelGrid>
+        </div>
+        <div>
+            <h:commandButton value="Prideti pacienta" action="#{updateDoctorDetails.addDoctorPatient()}">
+                <f:param name="doctorId" value="#{updateDoctorDetails.doctor.id}" />
+            </h:commandButton>
+            <h:commandButton value="Panaikinti gydytoja" action="#{updateDoctorDetails.removeDoctor()}">
+                <f:param name="doctorId" value="#{updateDoctorDetails.doctor.id}" />
+            </h:commandButton>
+        </div>
+    </h:form>
+    <h:link outcome="index" value="Atgal i pagridini puslapi"/>
+</h:body>
+</html>

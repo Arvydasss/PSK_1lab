@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>Gydytojai #{doctorsForDepartment.department.name} skyriuje:</h2>
+    <ol>
+        <ui:repeat value="#{doctorsForDepartment.department.doctors}" var="doctor">
+            <li>
+                <h:link value="#{doctor.name} #{doctor.surname}" outcome="doctorDetails?doctorId=#{doctor.id}" />
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <div>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Gydytojo vardas:" for="doctorName" />
+                <h:inputText id="doctorName" a:placeholder="Iveskite gydytojo varda" value="#{doctorsForDepartment.doctorToCreate.name}" required="false" />
+            </h:panelGrid>
+        </div>
+        <div>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Gydytojo vardas:" for="doctorSurname" />
+                <h:inputText id="doctorSurname" a:placeholder="Iveskite gydytojo pavarde" value="#{doctorsForDepartment.doctorToCreate.surname}" required="false" />
+            </h:panelGrid>
+        </div>
+        <div>
+            <h:commandButton value="Prideti nauja gydytoja"
+                             actionListener="#{doctorsForDepartment.createDoctor()}"
+                             action="#{'doctors?faces-redirect=true&amp;departmentId='.concat(doctorsForDepartment.department.id)}">
+                    <f:param name="departmentId" value="#{doctorsForDepartment.department.id}" />
+            </h:commandButton>
+        </div>
+        <div>
+            <h:commandButton value="Panaikinti skyriu"
+                             actionListener="#{doctorsForDepartment.removeDepartment}"
+                             action="index?faces-redirect=true">
+                <f:param name="departmentId" value="#{doctorsForDepartment.department.id}" />
+            </h:commandButton>
+        </div>
+    </h:form>
+    <h:link outcome="index" value="Atgal i pagridini puslapi"/>
+</h:body>
+</html>

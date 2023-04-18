@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="HospitalDB" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="org.h2.Driver"
+                        connectionURL="jdbc:h2:~/h2database/HospitalDB;AUTO_SERVER=TRUE"
+                        userId="sa"
+                        password="sa">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="src.mybatis.model" targetProject="MAVEN" />
+
+        <sqlMapGenerator targetPackage="src.mybatis.xml" targetProject="MAVEN" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="src.mybatis.dao" targetProject="MAVEN" />
+
+
+        <table schema="public" tableName="department">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="doctor">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="patient">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+    </context>
+</generatorConfiguration>
