@@ -1,2 +1,4 @@
 # PSK_1lab
-Pirmas laboratorinis darbas. Ligonines sistema
+Programų sistemų kūrimas.
+Pirmas laboratorinis darbas. 
+Ligoninės sistema.
