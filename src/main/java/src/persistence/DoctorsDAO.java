@@ -1,13 +1,16 @@
 package src.persistence;
 
 import src.entities.Doctor;
+import src.entities.Patient;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import java.util.List;
+import java.util.Random;
 
 @ApplicationScoped
-public class DoctorsDAO {
+public class DoctorsDAO implements DoctorsDAOInterface{
 
     @Inject
     private EntityManager em;
@@ -28,6 +31,17 @@ public class DoctorsDAO {
         Doctor doctor = em.find(Doctor.class, id);
         if (doctor != null) {
             em.remove(doctor);
+        }
+    }
+
+    public String findRandomDoctorName() {
+        List<Doctor> doctors = em.createNamedQuery("Doctor.findAll", Doctor.class).getResultList();
+        if (doctors.isEmpty()) {
+            return null;
+        } else {
+            Random random = new Random();
+            int index = random.nextInt(doctors.size());
+            return doctors.get(index).getName();
         }
     }
 }

@@ -1,7 +1,6 @@
 package src.persistence;
 
 import src.entities.Department;
-import src.entities.Doctor;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -31,5 +30,8 @@ public class DepartmentsDAO {
         if (department != null) {
             em.remove(department);
         }
+    }
+    public Department findByName(String name){
+        return loadAll().stream().filter(x -> name.equals(x.getName())).findFirst().orElse(null);
     }
 }

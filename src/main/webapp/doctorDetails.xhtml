@@ -34,6 +34,20 @@
                 <f:param name="doctorId" value="#{updateDoctorDetails.doctor.id}" />
             </h:commandButton>
         </div>
+        <h:form>
+            <h:outputText value="name: "/>
+            <h:inputText a:placeholder="Enter the name" value="#{updateDoctorDetails.doctor.name}" required="true" />
+            <h:commandButton value="update" action="#{updateDoctorDetails.updateDoctorName()}">
+                <f:param name="doctorId" value="#{updateDoctorDetails.doctor.id}" />
+            </h:commandButton>
+            <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
+        </h:form>
+        <div>
+            <h:outputText value="#{generateName.nameGenerationStatus}" />
+            <h:commandButton value="Generate name for patient" disabled="#{generateName.nameGenerationRunning}" action="#{generateName.generateNewName()}">
+                <f:param name="doctorId" value="#{updateDoctorDetails.doctor.id}" />
+            </h:commandButton>
+        </div>
     </h:form>
     <h:link outcome="index" value="Atgal i pagridini puslapi"/>
 </h:body>

@@ -5,4 +5,13 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
         bean-discovery-mode="annotated">
+        <alternatives>
+            <class>src.alternatives.AlternativeDoctorsDAO</class>
+        </alternatives>
+        <interceptors>
+            <class>src.interceptors.MethodLogger</class>
+        </interceptors>
+        <decorators>
+            <class>src.decorators.DoctorsDAODecorator</class>
+        </decorators>
 </beans>
